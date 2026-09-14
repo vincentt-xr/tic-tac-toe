@@ -1,0 +1,233 @@
+.game-hud {
+  box-sizing: border-box;
+  color: #fff1c9;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.game-hud__menu {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 4vw, 28px);
+  justify-content: center;
+  min-height: 100%;
+  padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+  text-align: center;
+  z-index: 1;
+  animation: game-hud-menu-enter 300ms ease-out both;
+}
+
+@keyframes game-hud-menu-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.game-hud__menu h1,
+.game-hud__status,
+.game-hud__result {
+  color: #fff1c9;
+  margin: 0;
+  text-shadow:
+    0 2px 0 #44200e,
+    0 4px 7px rgb(31 12 5 / 75%);
+  -webkit-text-stroke: 1px #5d2d14;
+}
+
+.game-hud__menu h1 {
+  font-size: clamp(32px, 9vw, 56px);
+  font-weight: 900;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.game-hud__welcome p {
+  font-size: clamp(17px, 4.5vw, 24px);
+  font-weight: 700;
+  margin: calc(clamp(16px, 4vw, 28px) * -0.5) 0 0;
+  text-shadow: 0 2px 5px rgb(31 12 5 / 75%);
+}
+
+.game-hud__wood-button,
+.game-hud__mark-option,
+.game-hud__difficulty-option {
+  font: inherit;
+  pointer-events: auto;
+}
+
+.game-hud__wood-button {
+  background:
+    linear-gradient(180deg, rgb(195 119 61 / 95%), rgb(111 53 22 / 98%)),
+    repeating-linear-gradient(8deg, rgb(255 220 158 / 14%) 0 2px, transparent 2px 6px);
+  border: 2px solid #5a2911;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 2px 0 rgb(255 224 164 / 45%),
+    inset 0 -3px 0 rgb(64 25 9 / 48%),
+    0 4px 0 #42200e,
+    0 6px 10px rgb(31 12 5 / 40%);
+  color: #fff1c9;
+  cursor: pointer;
+  font-size: clamp(16px, 4vw, 21px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  min-width: min(54vw, 230px);
+  padding: 0.68em 1.4em 0.76em;
+  text-shadow: 0 2px 0 #54260f;
+  -webkit-text-stroke: 0.5px #5d2d14;
+}
+
+.game-hud__wood-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.game-hud__wood-button:active:not(:disabled) {
+  box-shadow: inset 0 2px 0 rgb(64 25 9 / 45%), 0 1px 0 #42200e;
+  transform: translateY(3px);
+}
+
+.game-hud__wood-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.65) brightness(0.7);
+}
+
+.game-hud__mark-options {
+  display: flex;
+  gap: clamp(18px, 8vw, 52px);
+  justify-content: center;
+}
+
+.game-hud__mark-option,
+.game-hud__difficulty-option {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.game-hud__mark-option {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(15px, 4vw, 20px);
+  font-weight: 800;
+  gap: 8px;
+  min-width: 112px;
+  padding: 10px;
+}
+
+.game-hud__mark-option img {
+  height: clamp(84px, 23vw, 126px);
+  object-fit: contain;
+  width: clamp(84px, 23vw, 126px);
+}
+
+.game-hud__mark-option--selected,
+.game-hud__difficulty-option--selected {
+  background: rgb(105 54 22 / 45%);
+  border-color: #f2c26d;
+  box-shadow: 0 0 18px rgb(255 209 125 / 45%);
+}
+
+.game-hud__mark-option--selected {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.game-hud__difficulty-option--selected {
+  transform: translateX(6px);
+}
+
+.game-hud__mark-option--selected::after,
+.game-hud__difficulty-option--selected::after {
+  color: #f8d98c;
+  content: "✓ Selected";
+  font-size: 0.7em;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+}
+
+.game-hud__difficulty-option--selected::after {
+  align-self: center;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.game-hud__difficulty-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(82vw, 330px);
+}
+
+.game-hud__difficulty-option {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px;
+  padding: 12px 18px;
+  text-align: left;
+}
+
+.game-hud__difficulty-option strong {
+  font-size: clamp(18px, 5vw, 24px);
+}
+
+.game-hud__difficulty-option span {
+  font-size: clamp(13px, 3.5vw, 16px);
+  opacity: 0.86;
+}
+
+/* The board starts below this reserved gameplay header. */
+.game-hud__status,
+.game-hud__result {
+  box-sizing: border-box;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  width: min(88vw, 420px);
+  z-index: 1;
+}
+
+.game-hud__status {
+  font-size: clamp(18px, 4.8vw, 28px);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding-top: max(16px, env(safe-area-inset-top));
+  top: 0;
+}
+
+.game-hud__status--thinking {
+  animation: game-hud-thinking 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes game-hud-thinking {
+  from { opacity: 0.55; transform: translateX(-50%) scale(0.97); }
+  to { opacity: 1; transform: translateX(-50%) scale(1.03); }
+}
+
+.game-hud__result {
+  top: max(62px, calc(env(safe-area-inset-top) + 42px));
+}
+
+.game-hud__result-text {
+  font-size: clamp(28px, 7vw, 42px);
+  font-weight: 900;
+  letter-spacing: 0.045em;
+  margin: 0 0 clamp(10px, 2.5vw, 16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

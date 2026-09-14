@@ -1,0 +1,49 @@
+.hand-cursor-layer {
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.hand-cursor,
+.hand-cursor__trail {
+  background: rgb(255 241 201 / 22%);
+  border: 2px solid #fff1c9;
+  border-radius: 999px;
+  box-shadow: 0 0 10px #f2c26d, 0 0 24px rgb(242 194 109 / 80%);
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.hand-cursor {
+  animation: hand-cursor-pulse 850ms ease-in-out infinite alternate;
+  height: 28px;
+  width: 28px;
+}
+
+.hand-cursor__trail {
+  animation: hand-cursor-trail 380ms ease-out both;
+  height: calc(18px - var(--trail-index) * 2px);
+  opacity: calc(0.34 - var(--trail-index) * 0.055);
+  width: calc(18px - var(--trail-index) * 2px);
+}
+
+@keyframes hand-cursor-pulse {
+  from { box-shadow: 0 0 8px #f2c26d, 0 0 18px rgb(242 194 109 / 60%); transform: translate(-50%, -50%) scale(0.9); }
+  to { box-shadow: 0 0 14px #fff1c9, 0 0 30px rgb(242 194 109 / 95%); transform: translate(-50%, -50%) scale(1.08); }
+}
+
+@keyframes hand-cursor-trail {
+  from { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-cursor,
+  .hand-cursor__trail { animation: none; }
+}
