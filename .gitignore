@@ -7,3 +7,5 @@ opencode.json
 *.log
 .vincentt/
 .DS_Store
+.env.*.local
+.dev/
