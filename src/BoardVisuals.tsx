@@ -2,7 +2,6 @@ import { ScreenImage, ScreenShape, ScreenTransform } from "@vincentt-xr/sdk";
 import { startTransition, useEffect, useState } from "react";
 
 import {
-  BOARD_TEXTURE,
   CELL_LAYOUTS,
   cellLayout,
   CIRCLE_STROKE_TEXTURE,
@@ -95,7 +94,7 @@ const WinningLine = ({ cells, progress }: { cells: readonly CellId[]; progress: 
 
   return <ScreenShape
     name="winning-line"
-    transform={{ position: { x: 0, y: 0 }, size: { width: 720, height: 1280 } }}
+    transform={{ position: { x: 0, y: 0 }, size: { width: 720, height: 1280 }, rotation: 0 }}
     settings={{
       kind: "line",
       fillColor: "#f8d98c",
@@ -153,7 +152,16 @@ export const BoardVisuals = ({
   hoveredCell,
 }: BoardVisualsProps) => (
   <>
-    <ScreenImage name="board" src={BOARD_TEXTURE} coordinateSpace="canvas" canvasSize={{ width: 720, height: 1280 }} position={[0, 0]} size={[720, 1280]} fit="contain" transparent alphaTest={0.01} renderOrder={1000} overlay />
+    <ScreenImage
+      name="board"
+      src="/assets/photopea-export/board.png"
+      transform={{ position: { x: 0, y: 0 }, size: { width: 720, height: 1280 }, rotation: 0 }}
+      fit="contain"
+      transparent
+      alphaTest={0.01}
+      renderOrder={1000}
+      overlay
+    />
     {CELL_LAYOUTS.map((cell) => {
       const listIndex = winningCells?.indexOf(cell.id) ?? -1;
       return <CellImage
