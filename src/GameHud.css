@@ -8,17 +8,30 @@
   width: 100%;
 }
 
-.game-hud__menu {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 4vw, 28px);
-  justify-content: center;
-  min-height: 100%;
-  padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+.game-hud__sr {
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*
+ * Headings and status lines are ScreenText in the canvas (see GameHud.tsx).
+ * The controls sit at fixed heights of the 9:16 frame so they keep their place
+ * under those texts: a top of N% is canvas y = 640 - N * 12.8.
+ */
+.game-hud__menu,
+.game-hud__result {
+  inset: 0;
+  position: absolute;
   text-align: center;
   z-index: 1;
+}
+
+.game-hud__menu {
   animation: game-hud-menu-enter 300ms ease-out both;
 }
 
@@ -27,30 +40,19 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.game-hud__menu h1,
-.game-hud__status,
-.game-hud__result {
-  color: #fff1c9;
-  margin: 0;
-  text-shadow:
-    0 2px 0 #44200e,
-    0 4px 7px rgb(31 12 5 / 75%);
-  -webkit-text-stroke: 1px #5d2d14;
+.game-hud__menu > *,
+.game-hud__result > * {
+  left: 50%;
+  position: absolute;
+  translate: -50% -50%;
 }
 
-.game-hud__menu h1 {
-  font-size: clamp(32px, 9vw, 56px);
-  font-weight: 900;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-}
-
-.game-hud__welcome p {
-  font-size: clamp(17px, 4.5vw, 24px);
-  font-weight: 700;
-  margin: calc(clamp(16px, 4vw, 28px) * -0.5) 0 0;
-  text-shadow: 0 2px 5px rgb(31 12 5 / 75%);
-}
+.game-hud__welcome > .game-hud__wood-button { top: 56.25%; }
+.game-hud__mark > .game-hud__mark-options { top: 50%; }
+.game-hud__mark > .game-hud__wood-button { top: 66.4%; }
+.game-hud__difficulty > .game-hud__difficulty-options { top: 48.4%; }
+.game-hud__difficulty > .game-hud__wood-button { top: 67%; }
+.game-hud__result > .game-hud__wood-button { top: 17.6%; }
 
 .game-hud__wood-button,
 .game-hud__mark-option,
@@ -179,46 +181,6 @@
 .game-hud__difficulty-option span {
   font-size: clamp(13px, 3.5vw, 16px);
   opacity: 0.86;
-}
-
-/* The board starts below this reserved gameplay header. */
-.game-hud__status,
-.game-hud__result {
-  box-sizing: border-box;
-  left: 50%;
-  position: absolute;
-  text-align: center;
-  transform: translateX(-50%);
-  width: min(88vw, 420px);
-  z-index: 1;
-}
-
-.game-hud__status {
-  font-size: clamp(18px, 4.8vw, 28px);
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  padding-top: max(16px, env(safe-area-inset-top));
-  top: 0;
-}
-
-.game-hud__status--thinking {
-  animation: game-hud-thinking 0.75s ease-in-out infinite alternate;
-}
-
-@keyframes game-hud-thinking {
-  from { opacity: 0.55; transform: translateX(-50%) scale(0.97); }
-  to { opacity: 1; transform: translateX(-50%) scale(1.03); }
-}
-
-.game-hud__result {
-  top: max(62px, calc(env(safe-area-inset-top) + 42px));
-}
-
-.game-hud__result-text {
-  font-size: clamp(28px, 7vw, 42px);
-  font-weight: 900;
-  letter-spacing: 0.045em;
-  margin: 0 0 clamp(10px, 2.5vw, 16px);
 }
 
 @media (prefers-reduced-motion: reduce) {

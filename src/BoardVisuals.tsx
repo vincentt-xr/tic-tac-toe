@@ -155,7 +155,7 @@ export const BoardVisuals = ({
     <ScreenImage
       name="board"
       src="/assets/photopea-export/board.png"
-      transform={{ position: { x: 0, y: 0 }, size: { width: 720, height: 1280 }, rotation: 0 }}
+      anchors={{ left: -1, right: 1, top: 1, bottom: -1 }}
       fit="contain"
       transparent
       alphaTest={0.01}
