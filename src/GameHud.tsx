@@ -231,7 +231,7 @@ export const GameHud = ({
       visible={result && outcome === "draw"}
     />
 
-    <Html fullscreen zIndexRange={[10000, 0]} pointerEvents="none">
+    <Html fullscreen zIndexRange={[10000, 0]} style={{ pointerEvents: "none" }}>
       <section className={`game-hud game-hud--${stage}`}>
         <p className="game-hud__sr" aria-live="polite">{stage === "playing" || stage === "result" ? status : ""}</p>
         <WinConfetti active={result && outcome === selectedMark} />

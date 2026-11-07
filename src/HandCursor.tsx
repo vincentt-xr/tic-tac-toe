@@ -106,7 +106,7 @@ export const HandCursor = ({ onCanvasClick, onCanvasHover }: HandCursorProps) =>
 
   return <>
     <HandTracker targetFps={24} />
-    <Html fullscreen zIndexRange={[20000, 0]} pointerEvents="none">
+    <Html fullscreen zIndexRange={[20000, 0]} style={{ pointerEvents: "none" }}>
       <div className="hand-cursor-layer" aria-hidden="true">
         {trail.slice(1).reverse().map((point, index) => (
           <i
