@@ -1,0 +1,9 @@
+{
+  "title": "Tic-Tac-Toe - Vincentt",
+  "description": "A playful AR Tic-Tac-Toe game where you challenge an easy, medium, or unbeatable computer opponent using touch, mouse, or hand tracking.",
+  "image": "/images/og-default.jpg",
+  "imageAlt": "Vincentt — Augmented Reality App builder",
+  "imageWidth": 1200,
+  "imageHeight": 630,
+  "imageType": "image/jpeg"
+}

@@ -33,16 +33,22 @@
   },
   "overrides": [
     {
-      "files": ["src/Scene.tsx", "src/BoardVisuals.tsx"],
+      "files": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+      "rules": {
+        "no-promise-executor-return": "off",
+        "no-restricted-syntax": "off"
+      }
+    },
+    {
+      "files": ["src/**/*.tsx"],
       "rules": {
         "react/no-unknown-property": "off"
       }
     },
     {
-      "files": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+      "files": ["src/**/*.sim.ts", "src/**/*.sim.tsx", "src/**/sim/**/*.ts"],
       "rules": {
-        "no-promise-executor-return": "off",
-        "no-restricted-syntax": "off"
+        "no-param-reassign": ["error", { "props": false }]
       }
     }
   ]
